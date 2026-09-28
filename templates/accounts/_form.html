@@ -1,0 +1,39 @@
+{% load static %}
+{# Shared layout for the login and register pages. #}
+<section data-bs-version="5.1" class="form4 cid-ub1IIzhkx4 mbr-fullscreen">
+  <div class="container">
+    <div class="row content-wrapper justify-content-center">
+      <div class="col-lg-5 offset-lg-1 mbr-form">
+        <form method="post" class="mbr-form form-with-styler" novalidate>
+          {% csrf_token %}
+          {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+          <div class="dragArea row">
+            <div class="col-12">
+              <h1 class="mbr-section-title mb-4 display-2"><strong>{{ heading }}</strong></h1>
+              <p class="mbr-text mbr-fonts-style mb-2 display-7">{{ subheading }}</p>
+              {% for error in form.non_field_errors %}<p class="form-msg">{{ error }}</p>{% endfor %}
+            </div>
+            {% for field in form %}
+            <div class="col-12 form-group mb-3">
+              <input type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}" id="{{ field.id_for_label }}"
+                     placeholder="{{ field.label }}" class="form-control"
+                     {% if field.value and field.field.widget.input_type != 'password' %}value="{{ field.value }}"{% endif %} required>
+              {{ field.errors }}
+              {% if show_help and field.help_text %}<span class="helptext">{{ field.help_text|safe }}</span>{% endif %}
+            </div>
+            {% endfor %}
+            <div class="col-12 col-md-auto mbr-section-btn">
+              <button type="submit" class="btn btn-secondary display-4">{{ heading }}</button>
+            </div>
+          </div>
+        </form>
+        <p>{{ switch_text }} <a href="{{ switch_url }}">{{ switch_label }}</a></p>
+      </div>
+      <div class="col-lg-5 offset-lg-1 col-12">
+        <div class="image-wrapper">
+          <img class="w-100" src="{% static 'assets/images/illustration-teeth.png' %}" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

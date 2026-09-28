@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}About · Dental Caries Detection{% endblock %}
+{% block content %}
+<section data-bs-version="5.1" class="form4 cid-ub1IIzhkx4 page">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-7">
+        <div class="text-wrapper mb-4">
+          <h1 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>Why we built this</strong></h1>
+          <p class="mbr-text mbr-fonts-style display-7">
+            Finding and treating dental caries early is key to good oral health, but diagnosis usually
+            depends on a visual examination at a dental clinic, which is not always convenient or accessible.
+            This project offers a quick, accessible first check: a computer vision system that looks for
+            signs of caries in photos people take at home, so they can make an informed decision about
+            seeking professional care.
+          </p>
+        </div>
+        <div class="text-wrapper mb-4">
+          <h2 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>How it works</strong></h2>
+          <p class="mbr-text mbr-fonts-style display-7">
+            Each photo is analysed by two object detection models (YOLOv8x and YOLOv8m) trained on
+            different dental datasets. Before inference, contrast can be evened out with CLAHE to reduce the
+            effect of uneven lighting. The two models' predictions are merged with weighted box fusion, so a
+            finding that both models agree on is counted once and ranked with higher confidence.
+          </p>
+        </div>
+        <div class="text-wrapper">
+          <h2 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>How to use it</strong></h2>
+          <ol class="mbr-text mbr-fonts-style display-7">
+            <li>Create an account, then log in.</li>
+            <li>Take a clear, well-lit photo of your teeth with a phone or camera.</li>
+            <li>Upload the photo and wait a few seconds for the analysis.</li>
+            <li>Review the highlighted regions and the number of possible caries found.</li>
+            <li>If anything is flagged, or you have symptoms, book a visit with a dentist.</li>
+          </ol>
+          <p class="disclaimer">
+            This tool supports, but does not replace, regular check-ups and professional advice.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4 offset-lg-1 col-12">
+        <div class="image-wrapper">
+          <img class="w-100" src="{% static 'assets/images/illustration-teeth.png' %}" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

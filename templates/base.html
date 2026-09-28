@@ -1,0 +1,94 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta name="description" content="AI-assisted dental caries detection from intraoral photos">
+  <link rel="shortcut icon" href="{% static 'assets/images/logo.png' %}" type="image/x-icon">
+  <title>{% block title %}Dental Caries Detection{% endblock %}</title>
+
+  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-grid.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-reboot.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/socicon/css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/theme/css/style.css' %}">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,700;1,400;1,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
+  <link rel="stylesheet" href="{% static 'assets/mobirise/css/mbr-additional.css' %}" type="text/css">
+  <style>
+    .form-msg, .errorlist { color: #c0392b; list-style: none; padding: 0; margin: .25rem 0 .5rem; }
+    .form-msg.ok { color: #1e8449; }
+    .disclaimer { font-size: .9rem; opacity: .8; }
+    .page { padding-top: 7rem; padding-bottom: 4rem; }
+    .page .mbr-text, .page .mbr-section-title { text-align: left; }
+    .navbar-buttons.mbr-section-btn { display: flex; flex-wrap: nowrap; align-items: center; }
+    .nav-form { display: flex; margin: 0; }
+    .btn-sm { white-space: nowrap; }
+    @media (max-width: 991px) {
+      .cid-sFCw1qGFAI .navbar .container { display: flex; flex-wrap: wrap; align-items: center; }
+      .cid-sFCw1qGFAI .navbar-toggler { margin-left: auto; position: relative; z-index: 2; }
+      .cid-sFCw1qGFAI .navbar-buttons.mbr-section-btn { flex-wrap: wrap; gap: .5rem; padding: .5rem 0; }
+      .cid-sFCw1qGFAI .navbar { z-index: 1030; box-shadow: 0 1px 6px rgba(0, 0, 0, .08); }
+    }
+    .helptext { display: block; font-size: .8rem; opacity: .7; margin-top: .25rem; }
+    .helptext ul { padding-left: 1.1rem; margin: 0; }
+  </style>
+</head>
+<body>
+
+<section data-bs-version="5.1" class="menu menu2 cid-sFCw1qGFAI" once="menu">
+  <nav class="navbar navbar-dropdown navbar-expand-lg">
+    <div class="container">
+      <div class="navbar-brand">
+        <span class="navbar-caption-wrap">
+          <a class="navbar-caption text-black display-7" href="{% url 'home' %}">Home</a>
+          &nbsp;&middot;&nbsp;
+          <a class="navbar-caption text-black display-7" href="{% url 'about' %}">About</a>
+          {% if user.is_authenticated %}
+          &nbsp;&middot;&nbsp;
+          <a class="navbar-caption text-black display-7" href="{% url 'diagnosis:history' %}">History</a>
+          {% endif %}
+        </span>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="hamburger"><span></span><span></span><span></span><span></span></div>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-buttons mbr-section-btn">
+          {% if user.is_authenticated %}
+            <a class="btn btn-secondary display-4" href="{% url 'diagnosis:upload' %}">New analysis</a>
+            <form class="nav-form" method="post" action="{% url 'accounts:logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-primary display-4">Logout</button>
+            </form>
+          {% else %}
+            <a class="btn btn-secondary display-4" href="{% url 'accounts:login' %}">Login</a>
+            <a class="btn btn-primary display-4" href="{% url 'accounts:register' %}">Register</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+</section>
+
+{% block content %}{% endblock %}
+
+<section data-bs-version="5.1" class="footer3 cid-sFCygHrmNf" once="footers">
+  <div class="container">
+    <div class="row align-center mbr-white">
+      <div class="row row-copirayt">
+        <p class="mbr-text mb-0 mbr-fonts-style mbr-white align-center display-7">
+          AI-Assisted Dental Caries Detection &middot; For screening only, not a medical diagnosis.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{% static 'assets/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/smoothscroll/smooth-scroll.js' %}"></script>
+<script src="{% static 'assets/theme/js/script.js' %}"></script>
+</body>
+</html>

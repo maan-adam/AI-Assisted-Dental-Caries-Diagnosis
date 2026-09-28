@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Register · Dental Caries Detection{% endblock %}
+{% block content %}
+{% url 'accounts:login' as login_url %}
+{% include "accounts/_form.html" with heading="Register" subheading="Create your account." switch_text="Already have an account?" switch_url=login_url switch_label="Login" show_help=True %}
+{% endblock %}
