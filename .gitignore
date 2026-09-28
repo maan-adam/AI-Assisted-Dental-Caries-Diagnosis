@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Secrets and local data
+.env
+db.sqlite3
+media/
+staticfiles/
+
+# Model weights (download with scripts/download_models.py)
+models/*.pt
+models/*.onnx
+
+# Runtime output
+outputs/
+runs/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
