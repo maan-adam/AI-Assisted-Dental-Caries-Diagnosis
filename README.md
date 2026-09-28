@@ -94,7 +94,7 @@ recall, mAP@50 and mAP@50-95 side by side. To enable CLAHE for one or both model
 ## Quick start
 
 ```bash
-git clone https://github.com/USERNAME/dental-caries-detection.git
+git clone https://github.com/maan-adam/dental-caries-detection.git
 cd dental-caries-detection
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
